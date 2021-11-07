@@ -1,0 +1,15 @@
+version: "3.7"
+services:
+  db:
+    container_name: database
+    image: postgres:13-buster
+    restart: always
+    environment:
+      POSTGRES_DB: test
+      POSTGRES_USERNAME: postgres
+      POSTGRES_PASSWORD: test@123
+    volumes:
+      - ./database/scripts:/docker-entrypoint-initdb.d
+      - ./database/config/postgresql.conf:/etc/postgresql.conf
+    ports:
+      - 5435:5432
